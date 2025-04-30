@@ -36,6 +36,7 @@ public class LoginController : Controller
         }
 
         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+
         return View(model);
     }
 }
