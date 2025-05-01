@@ -5,7 +5,7 @@ namespace AP.Generic;
 
 
 /// <summary>
-/// Implementation of Unit of work pattern
+/// Unit of work tasarımını uygulayan sınıf
 /// </summary>
 public class UnitOfWork : IUnitOfWork
 {

@@ -2,6 +2,11 @@
 
 namespace AP.Data.entites.helperEntities;
 
+
+/// <summary> 
+///  Hata Kayıtlarını içieren veritabanı tablosu
+/// </summary>
+
 public sealed class ErrorLogs : EasyBaseEntity<int>
 {
     public string Message { get; set; }

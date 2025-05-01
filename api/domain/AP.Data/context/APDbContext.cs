@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AP.Data.context;
 
+/// <summary> 
+///  Veritabanı context sınıfı
+/// </summary>
+ 
 public class APDbContext : DbContext
 {
 
@@ -14,6 +18,10 @@ public class APDbContext : DbContext
     protected APDbContext()
     {
     }
+
+    /// <summary> 
+    ///  Tabloların DbSet'leri, veritabanı tablolarını temsil eder
+    /// </summary>
     #region DbSets    
     public virtual DbSet<Users> Users { get; set; }
     public virtual DbSet<UserRole> UserRoles { get; set; }
@@ -23,6 +31,8 @@ public class APDbContext : DbContext
     {
 
         base.OnModelCreating(modelBuilder);
+
+        ///  Tablo Konfigurasyonları entities/configurations klasöründe yapılır
         modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
 
 

@@ -63,6 +63,9 @@ namespace AP.Data.Migrations
                     b.Property<bool>("CanDelete")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("CanUpdate")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("CanWrite")
                         .HasColumnType("bit");
 
@@ -108,9 +111,6 @@ namespace AP.Data.Migrations
 
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()

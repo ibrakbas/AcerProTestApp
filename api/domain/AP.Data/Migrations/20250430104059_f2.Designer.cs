@@ -9,150 +9,149 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AP.Data.Migrations
+namespace AP.Data.Migrations;
+
+[DbContext(typeof(APDbContext))]
+[Migration("20250430104059_f2")]
+partial class f2
 {
-    [DbContext(typeof(APDbContext))]
-    [Migration("20250430104059_f2")]
-    partial class f2
+    /// <inheritdoc />
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "9.0.4")
+            .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AP.Data.entites.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("AP.Data.entites.UserRole", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("CanDelete")
-                        .HasColumnType("bit");
+                b.Property<bool>("CanDelete")
+                    .HasColumnType("bit");
 
-                    b.Property<bool>("CanWrite")
-                        .HasColumnType("bit");
+                b.Property<bool>("CanWrite")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletionDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsAdmin")
+                    .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsDeleted")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModificationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("ModificationDate")
+                    .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("UserRoles");
-                });
+                b.ToTable("UserRoles");
+            });
 
-            modelBuilder.Entity("AP.Data.entites.Users", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("AP.Data.entites.Users", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AP_UserRoleId")
-                        .HasColumnType("int");
+                b.Property<int>("AP_UserRoleId")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletionDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsDeleted")
+                    .HasColumnType("bit");
 
-                    b.Property<DateTime?>("ModificationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("ModificationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
+                b.Property<int>("MyProperty")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Password")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                b.Property<string>("UserName")
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("AP_UserRoleId");
+                b.HasIndex("AP_UserRoleId");
 
-                    b.ToTable("AP_Users", (string)null);
-                });
+                b.ToTable("AP_Users", (string)null);
+            });
 
-            modelBuilder.Entity("AP.Data.entites.helperEntities.ErrorLogs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("AP.Data.entites.helperEntities.ErrorLogs", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime>("CreationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("DeletionDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                b.Property<bool>("IsDeleted")
+                    .HasColumnType("bit");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Message")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ModificationDate")
-                        .HasColumnType("datetime2");
+                b.Property<DateTime?>("ModificationDate")
+                    .HasColumnType("datetime2");
 
-                    b.Property<string>("RequestMethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("RequestMethod")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RequestPath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("RequestPath")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Trace")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Trace")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("ErrorLogs");
-                });
+                b.ToTable("ErrorLogs");
+            });
 
-            modelBuilder.Entity("AP.Data.entites.Users", b =>
-                {
-                    b.HasOne("AP.Data.entites.UserRole", "AP_UserRole")
-                        .WithMany()
-                        .HasForeignKey("AP_UserRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        modelBuilder.Entity("AP.Data.entites.Users", b =>
+            {
+                b.HasOne("AP.Data.entites.UserRole", "AP_UserRole")
+                    .WithMany()
+                    .HasForeignKey("AP_UserRoleId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("AP_UserRole");
-                });
+                b.Navigation("AP_UserRole");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

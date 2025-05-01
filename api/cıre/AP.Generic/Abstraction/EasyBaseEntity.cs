@@ -1,43 +1,43 @@
 ﻿namespace AP.Generic.Abstraction;
 
-/// <summary>
-/// This abstraction implemented base properties for entities
+/// <summary> 
+///  Veritabanı tablosu için temel özellikleri uygulayan bu soyut sınıf
 /// </summary>
 /// <typeparam name="TPrimaryKey">
-/// Primary Key type of the entity
+/// Veritabanı tablosunun birincil anahtar türü
 /// </typeparam>
 public abstract class EasyBaseEntity<TPrimaryKey> : IEasyEntity<TPrimaryKey>, IEasyCreateDateEntity, IEasyUpdateDateEntity, IEasySoftDeleteEntity
 {
     /// <summary>
-    /// Creation Date <see>
+    /// Oluşturulma Tarihi <see>
     ///     <cref>{DateTime}</cref>
     /// </see>
     /// </summary> 
     public virtual DateTime CreationDate { get; set; }
 
     /// <summary>
-    /// Primary Key <see>
+    /// Birincil Anahtar <see>
     ///     <cref>{TPrimaryKey}</cref>
     /// </see>
     /// </summary>
     public virtual TPrimaryKey Id { get; set; }
 
     /// <summary>
-    /// Modification Date <see>
+    /// Değiştirilme Tarihi 
     ///     <cref>{DateTime}</cref>
     /// </see>
     /// </summary> 
     public virtual DateTime? ModificationDate { get; set; }
 
     /// <summary>
-    /// Deletion Date <see>
+    /// Silinme Tarihi <see>
     ///     <cref>{DateTime}</cref>
     /// </see>
     /// </summary>
     public virtual DateTime? DeletionDate { get; set; }
 
     /// <summary>
-    /// Is Deleted <see>
+    /// Silinip Silinmediği Durumu<see>
     ///     <cref>{Boolean}</cref>
     /// </see>
     /// </summary> 

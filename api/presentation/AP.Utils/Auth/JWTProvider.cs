@@ -8,6 +8,11 @@ using System.Text;
 
 namespace AP.Utils.Auth;
 
+
+/// <summary> 
+///     JWT yönetimini içeren sınıf. JWT ayarlarını ve token oluşturma işlemlerini içerir.
+///     JWT Expiry süresi 1 saat olarak ayarlanmıştır.
+/// </summary>
 public sealed class JWTProvider : IJWTProvider
 {
     private readonly JwtOptions options;

@@ -4,7 +4,10 @@ using System.Net;
 
 namespace AP.API.ErrorHandling;
 
-
+/// <summary> 
+///     Hata Yakalama işlemlerini yöneten middleware,
+///     Hata durumunda hata mesajını ve stack trace bilgisini alır ve veritabanına kaydeder.
+/// </summary>
 public sealed class ErrorMiddleware : IMiddleware
 {
     public readonly IUnitOfWork _unitOfWork;

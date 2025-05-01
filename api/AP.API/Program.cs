@@ -5,8 +5,6 @@ using AP.Generic.Services;
 using AP.Utils.Auth;
 using AP.Utils.Service;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,24 +14,30 @@ builder.Services
         .AddDbContext<APDbContext>(
                                 optionsAction => optionsAction.UseSqlServer(builder.Configuration.GetConnectionString("Main")));
 
- 
 
 
+#region Services
+//UnitOfWork  servis eklemesi, veritabaný iþlemleri için
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); 
-
+// ErrorHandling servis eklemesi, Hata yakalama iþlemleri için
 builder.Services.AddTransient<ErrorMiddleware>();
 
+// AutoMapper servis eklemesi, DTO ve Entity dönüþümleri için, AP.Data.mapping klasöründe yapýlýr
 builder.Services.AddAutoMapper(typeof(AP.Data.AssemblyReference).Assembly);
 
+
+// EasyRepository servis eklemesi, repository pattern için
 builder.Services.ApplyEasyRepository<AP.Data.context.APDbContext>();
 
+// JWT servis eklemesi, JWT iþlemleri için AP.Utils.Auth klasöründe yapýlýr
 builder.Services.AddScoped<IJWTProvider, JWTProvider>();
 
-
+// JWT ayarlarý konfigure edilir, AP.API.Options klasöründe yapýlýr
 builder.Services.ConfigureOptions<AP.API.Options.JwtOptions>();
+#endregion
 
-// Presentation katmaný için servis eklemesi
+// Presentation katmaný için servis eklemesi, controller ve endpoint'leri için AP.Presentation.Controllers klasöründe yapýlýr
 builder.Services.AddControllers()
     .AddApplicationPart(typeof(AP.Presentation.AssemblyReference).Assembly)
     .AddNewtonsoftJson(o =>
@@ -41,11 +45,12 @@ builder.Services.AddControllers()
         o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
     });
 
+// Swagger ayarlarý, API dökümantasyonu için
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+// CORS ayarlarý, API'ye dýþarýdan eriþim için
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -58,6 +63,7 @@ builder.Services.AddCors(options =>
                    .SetIsOriginAllowed(builder => true);
         });
 });
+
 
 var app = builder.Build();
 

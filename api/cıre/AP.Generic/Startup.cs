@@ -6,22 +6,12 @@ namespace AP.Generic;
 
 public static class Startup
 {
-    /// <summary>
-    /// This method takes <see cref="ServiceLifetime"/> service lifetime and <see cref="{TDbContext}"/> database context. In additional this method performs apply easy repository library for own db context
+    /// <summary> 
+    /// Bu method <see cref="ServiceLifetime"/> servis ömrünü ve <see cref="{TDbContext}"/> veritabanı bağlamını alır.
+    /// Ayrıca bu metod kendi veritabanı bağlamı için kolay depo kütüphanesini uygular
     /// </summary>
-    /// <typeparam name="TDbContext">
-    /// <see cref="DbContext"/> database context.
-    /// </typeparam>
-    /// <param name="services">
-    /// Service collection <see cref="IServiceCollection"/>
-    /// </param>
-    /// <param name="serviceLifetime">
-    /// Service LifeTime <see cref="ServiceLifetime"/>
-    /// </param>
-    /// <returns>
-    /// <see cref="IServiceCollection"/>
-    /// </returns>
-    /// 
+
+
     public static IServiceCollection ApplyEasyRepository<TDbContext>(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Transient) where TDbContext : DbContext
     {
         services.Add(new ServiceDescriptor(

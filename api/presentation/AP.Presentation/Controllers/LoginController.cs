@@ -2,7 +2,6 @@
 using AP.Data.dtos.responses;
 using AP.Data.entites;
 using AP.Generic.Services;
-using AP.Utils.Auth;
 using AP.Utils.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +10,9 @@ using Microsoft.EntityFrameworkCore.Query;
 namespace AP.Presentation.Controllers;
 
 
+/// <summary> 
+///     Login ve JWT işlemlerini yöneten controller
+/// </summary>
 public sealed class LoginController : ControllerBase
 {
 
