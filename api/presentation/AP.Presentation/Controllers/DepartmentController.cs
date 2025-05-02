@@ -24,6 +24,7 @@ public class  DepartmentController : ControllerBase
 
    
     [HttpPost("add/")]
+    [Authorize]
     public async Task<IActionResult> AddAsync([FromBody] DepartmentDto dto)
     {
 
@@ -44,6 +45,7 @@ public class  DepartmentController : ControllerBase
     }
     
     [HttpPost("update/{id}")]
+    [Authorize]
     public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] DepartmentDto dto)
     {
         var entity = await _unitofWork.Repository.GetByIdAsync<Departments>(true, id);
@@ -56,6 +58,7 @@ public class  DepartmentController : ControllerBase
     }
  
     [HttpDelete("hard/{id}")]
+    [Authorize]
     public async Task<IActionResult> HardDeleteAsync([FromRoute] int id)
     {
         var entity = await _unitofWork.Repository.GetByIdAsync<Departments>(true, id);
@@ -65,6 +68,7 @@ public class  DepartmentController : ControllerBase
     }
     
     [HttpDelete("soft/{id}")]
+    [Authorize]
     public async Task<IActionResult> SoftDeleteAsync([FromRoute] int id)
     {
         var entity = await _unitofWork.Repository.GetByIdAsync<Departments>(true, id);
@@ -75,6 +79,7 @@ public class  DepartmentController : ControllerBase
 
    
     [HttpGet("get/{id}")]
+    [Authorize]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
     {
         Func<IQueryable<Departments>, IIncludableQueryable<Departments, object>> include =
@@ -85,6 +90,7 @@ public class  DepartmentController : ControllerBase
     }
 
     [HttpGet("getall")]
+    [Authorize]
     public async Task<IActionResult> GetMultipleAsync()
     {
         Func<IQueryable<Departments>, IIncludableQueryable<Departments, object>> include =

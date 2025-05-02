@@ -4,6 +4,7 @@ using AP.UI.Models;
 using AP.UI.Services;
 using AP.Data.dtos;
 using AP.Data.dtos.responses;
+using AP.Data.entites;
 
 namespace AP.UI.Controllers;
 
@@ -23,9 +24,28 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Worker()
+    public IActionResult CreateWorker(WorkerDto dto)
     {
         return View();
+    }
+    public async Task<IActionResult> Worker()
+    {
+        try
+        {
+            // API'den çalýþanlarý almak için istek gönderiyoruz
+            var response = await httpClientService.GetAsync<List<Workers>>("worker/getall");
+
+            // Eðer istek baþarýlýysa, çalýþanlarý ViewBag'e ekliyoruz 
+            ViewBag.Workers = response;
+            return View();
+
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "worker getall esnasýnda hata oluþtu.");
+            ViewBag.ErrorMessage = ex.Message;
+            return View();
+        }
     }
 
     public IActionResult Login()
@@ -49,14 +69,14 @@ public class HomeController : Controller
             }
 
             // Eðer login baþarýsýzsa, hata mesajýný gösteriyoruz
-            ViewBag.ErrorMessage = "Invalid username or password.";
+            ViewBag.ErrorMessage = "Kullanýcý Adý veya þifre hatalý";
             return View();
         }
         catch (Exception ex)
         {
             // Hata durumunda loglama yapýyoruz ve kullanýcýya hata mesajý gösteriyoruz
-            _logger.LogError(ex, "An error occurred during login.");
-            ViewBag.ErrorMessage = "An error occurred. Please try again later.";
+            _logger.LogError(ex, "Login esnasýnda hata oluþtu.");
+            ViewBag.ErrorMessage = ex.Message;
             return View();
         }
     }

@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -28,12 +29,12 @@ namespace AP.UI.Services
             var response = await _httpClient.GetAsync(endpoint);
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<T>(content);
+            return JsonConvert.DeserializeObject<T>(content);
         }
 
         public async Task<TResponse> PostAsync<TRequest, TResponse>(string endpoint, TRequest data)
         {
-            var json = JsonSerializer.Serialize(data);
+            var json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(endpoint, content);
             if (!response.IsSuccessStatusCode)
@@ -41,7 +42,7 @@ namespace AP.UI.Services
                 throw new Exception($"API call failed with status code {response.StatusCode}");
             }
             var responseContent = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<TResponse>(responseContent);
+            return JsonConvert.DeserializeObject<TResponse>(responseContent);
         }
     }
 }

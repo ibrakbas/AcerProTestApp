@@ -3,6 +3,7 @@ using AP.Data.dtos.responses;
 using AP.Data.entites;
 using AP.Generic.Services;
 using AP.Utils.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -28,6 +29,7 @@ public sealed class LoginController : ControllerBase
 
 
     [HttpPost("login/")]
+    [AllowAnonymous]
     public async Task<IActionResult> LoginAsync([FromBody] LoginDto dto)
     {
         Func<IQueryable<Users>, IIncludableQueryable<Users, object>> includDe =

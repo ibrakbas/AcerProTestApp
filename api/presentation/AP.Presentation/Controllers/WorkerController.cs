@@ -23,6 +23,7 @@ public class  WorkerController : ControllerBase
 
     
     [HttpPost("add/")]
+    [Authorize]
     public async Task<IActionResult> AddAsync([FromBody] WorkerDto dto)
     {
         var entity = await _unitofWork.Repository.AddAsync<Workers, int>(Mapper.Map<Workers>(dto), default);
@@ -42,6 +43,7 @@ public class  WorkerController : ControllerBase
     }
     
     [HttpPost("update/{id}")]
+    [Authorize]
     public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] WorkerDto dto)
     {
         var entity = await _unitofWork.Repository.GetByIdAsync<Workers>(true, id);
@@ -54,6 +56,7 @@ public class  WorkerController : ControllerBase
     }
    
     [HttpDelete("hard/{id}")]
+    [Authorize]
     public async Task<IActionResult> HardDeleteAsync([FromRoute] int id)
     {
         var entity = await _unitofWork.Repository.GetByIdAsync<Workers>(true, id);
@@ -63,6 +66,7 @@ public class  WorkerController : ControllerBase
     }
    
     [HttpDelete("soft/{id}")]
+    [Authorize]
     public async Task<IActionResult> SoftDeleteAsync([FromRoute] int id)
     {
         var entity = await _unitofWork.Repository.GetByIdAsync<Workers>(true, id);
@@ -72,6 +76,8 @@ public class  WorkerController : ControllerBase
     }
  
     [HttpGet("get/{id}")]
+    [Authorize]
+
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
     {
         Func<IQueryable<Workers>, IIncludableQueryable<Workers, object>> include =
@@ -82,6 +88,7 @@ public class  WorkerController : ControllerBase
     }
     
     [HttpGet("getall")]
+ 
     public async Task<IActionResult> GetMultipleAsync()
     {
         Func<IQueryable<Workers>, IIncludableQueryable<Workers, object>> include =

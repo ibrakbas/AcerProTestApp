@@ -1,7 +1,49 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Çalışanlar";
 }
 
-<h1>@ViewData["Title"]</h1>
-    <p>Çalışanlar Sayfası</a>.</p>
- 
+
+<h1>@ViewData["Title"]</h1> 
+<div class="row"> 
+    <div class="col-sm-12">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="form-group">
+                    <button type="button" class="btn btn-sm btn-light-primary main"  asp-controller="Home" asp-action="CreateWorker">Yeni Ekle</button>
+                </div>
+                <div class="dt-responsive table-responsive">
+                    <table id="dom-table" class="table table-striped table-bordered nowrap">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Adı</th>
+                                <th>Soyadı</th>
+                                <th>Departman</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var worker in ViewBag.Workers)
+                            {
+                                <tr>
+                                    <td>@worker.Id</td>
+                                    <td>@worker.Name</td>
+                                    <td>@worker.Surname</td>
+                                    <td>@worker.Department.Description</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-light-primary main"  >Düzenle</button>
+                                        <button type="button" class="btn btn-sm btn-light-danger main"  >Kaldır</button>
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

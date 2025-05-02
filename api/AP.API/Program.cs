@@ -16,7 +16,7 @@ builder.Services
 
 
 
-#region Services
+#region Services DI
 //UnitOfWork  servis eklemesi, veritabaný iþlemleri için
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
