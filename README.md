@@ -6,7 +6,6 @@ Aþaðýda Git iþ akýþý, kurulum talimatlarý ve proje iþleyiþi hakkýnda detaylar bu
 
 ---
 
-## Git Ýþ Akýþý
 
 ### Katmanlar
 - **Veritabaný**: `AP.Generic` - Veritabaný baðlantý ayarlarý ve yapýlandýrmalarý.
@@ -32,20 +31,21 @@ Aþaðýda Git iþ akýþý, kurulum talimatlarý ve proje iþleyiþi hakkýnda detaylar bu
 
 ## Genel Yapý Hakkýnda
 
-Test projesi ,
-Razor Pages ve API projelerini içermektedir. 
-Proje, kullanýcý arayüzü ve API katmanlarý arasýnda veri alýþveriþini saðlamak için `ApiConnectionService` gibi servis sýnýflarýný kullanmaktadýr. 
+Test projesi;
+MVC Web App ve .Net Core Web API projelerini içermektedir. 
+Proje, kullanýcý arayüzü ve API katmanlarý arasýnda veri alýþveriþini saðlamak için `ApiConnectionService`   servis sýnýfýný kullanmaktadýr. 
 Bu yapý, projenin modülerliðini artýrýr ve bakýmýný kolaylaþtýrýr.
-API projesi, `AP.API` dizininde bulunurken, Razor Pages projesi `AP.UI` dizinindedir.
+API projesi, `AP.API` dizininde bulunurken, Web App projesi `AP.UI` dizinindedir.
 
 Entityframework Core kullanýlarak veritabaný iþlemleri gerçekleþtirilir. CodeFirst yaklaþýmý ile veritabaný tablolarý oluþturulmuþtur.
-Veritabaný iþlemleri için Entity Framework Core kullanýlmaktadýr. Hata yakalama ve yönetimi için `AP.Utils` dizininde yardýmcý sýnýflar bulunmaktadýr.
+Veritabaný iþlemleri için Entity Framework Core kullanýlmaktadýr.  
 Repository ve UnitOfWork desenleri kullanýlarak veri eriþimi saðlanmaktadýr.
-Hatalar her exception durumunda `AP.Utils` dizinindeki `ErrorHandler` sýnýfý tarafýndan yakalanýr ve yönetilir.
+JWT (JSON Web Token) ile kimlik doðrulama ve yetkilendirme iþlemleri `AP.Utils\Auth` içindeki yardýmcý sýnýflar ile  yapýlmaktadýr.
+JWT ayarlarý `appsettings.json` dosyasýnda yapýlandýrýlmýþtýr.
+Hatalar her exception durumunda `AP.API` dizinindeki `ErrorHandler` sýnýfý tarafýndan yakalanýr ve yönetilir.
 
 ## Yaþanýlan zorluklar
 - Proje baþlangýcýnda, Razor Pages ve API projeleri arasýndaki veri alýþveriþini saðlamak için uygun bir yapý oluþturmak zor oldu.
 - Veritabaný baðlantý ayarlarýnýn doðru yapýlandýrýlmasý ve Entity Framework Core ile veritabaný iþlemlerinin düzgün çalýþmasý için zaman harcandý.
 - API ve Razor Pages projeleri arasýnda veri alýþveriþini saðlamak için `ApiConnectionService` sýnýfýnýn doðru bir þekilde yapýlandýrýlmasý gerekti.
 - Veritabaný iþlemleri sýrasýnda karþýlaþýlan hatalarýn yönetimi için `AP.Utils` dizinindeki `ErrorHandler` sýnýfýnýn doðru bir þekilde yapýlandýrýlmasý gerekti.
-- 
