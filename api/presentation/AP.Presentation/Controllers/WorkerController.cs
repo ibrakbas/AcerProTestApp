@@ -11,6 +11,7 @@ namespace AP.Presentation.Controllers;
 
  
 [Route("[controller]")]
+[Authorize]
 public class  WorkerController : ControllerBase
 {
     private readonly IUnitOfWork _unitofWork;
@@ -88,7 +89,7 @@ public class  WorkerController : ControllerBase
     }
     
     [HttpGet("getall")]
- 
+    [Authorize]
     public async Task<IActionResult> GetMultipleAsync()
     {
         Func<IQueryable<Workers>, IIncludableQueryable<Workers, object>> include =

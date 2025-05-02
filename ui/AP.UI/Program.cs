@@ -5,19 +5,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AP.UI.Services.IApiConnectionService, AP.UI.Services.ApiConnectionService>();
 builder.Services.AddHttpClient<AP.UI.Services.IHttpClientService, AP.UI.Services.HttpClientService>();
 
+// Session servisi  ekleniyor
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor(); // Session'a eriþim için gerekli
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
+app.UseExceptionHandler("/Home/Error");
+app.UseHsts();
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseSession(); // Session middleware’i
 app.UseAuthorization();
 
 app.MapStaticAssets();

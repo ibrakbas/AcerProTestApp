@@ -23,11 +23,36 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    public IActionResult CreateWorker(WorkerDto dto)
+    public async Task<IActionResult> CreateWorker()
     {
+        var response = await httpClientService.GetAsync<List<Departments>>("department/getall");
+        ViewBag.Departments = response;
         return View();
     }
+    public async  Task<IActionResult> AddWorker(WorkerDto dto)
+    {
+        try
+        { 
+            var response = await httpClientService.PostAsync<WorkerDto, Workers>("worker/add", dto);
+
+            if (response.Id>0)
+            {
+             
+                return RedirectToAction("Worker");
+            }
+             
+            return View();
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda loglama yapýyoruz ve kullanýcýya hata mesajý gösteriyoruz
+            _logger.LogError(ex, "Worker Ekleme esnasýnda hata oluþtu.");
+            ViewBag.ErrorMessage = ex.Message;
+            return View();
+        }
+    }
+
+    
     public async Task<IActionResult> Worker()
     {
         try
@@ -65,6 +90,7 @@ public class HomeController : Controller
             {
                 // Eðer login baþarýlýysa, token'ý alýyoruz ve çalýþanlar sayfasýna yönlendiriyoruz
                 string token = response.token;
+                HttpContext.Session.SetString("Token", token);
                 return RedirectToAction("Worker");
             }
 

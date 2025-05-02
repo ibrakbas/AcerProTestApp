@@ -1,24 +1,21 @@
-using Microsoft.Extensions.Configuration;
+namespace AP.UI.Services;
 
-namespace AP.UI.Services
+public interface IApiConnectionService
 {
-    public interface IApiConnectionService
+    string GetApiBaseUrl();
+}
+
+public class ApiConnectionService : IApiConnectionService
+{
+    private readonly IConfiguration _configuration;
+
+    public ApiConnectionService(IConfiguration configuration)
     {
-        string GetApiBaseUrl();
+        _configuration = configuration;
     }
 
-    public class ApiConnectionService : IApiConnectionService
+    public string GetApiBaseUrl()
     {
-        private readonly IConfiguration _configuration;
-
-        public ApiConnectionService(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-        public string GetApiBaseUrl()
-        {
-            return _configuration["ApiSettings:BaseUrl"];
-        }
+        return _configuration["ApiSettings:BaseUrl"];
     }
 }

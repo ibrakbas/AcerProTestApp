@@ -1,6 +1,4 @@
-﻿using AutoFilterer.Extensions;
-using AutoFilterer.Types;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using AP.Generic.Abstraction;
 using AP.Generic.Services;

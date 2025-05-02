@@ -2,28 +2,27 @@
 
 #nullable disable
 
-namespace AP.Data.Migrations
+namespace AP.Data.Migrations;
+
+/// <inheritdoc />
+public partial class delMy : Migration
 {
     /// <inheritdoc />
-    public partial class delMy : Migration
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "MyProperty",
-                table: "Users");
-        }
+        migrationBuilder.DropColumn(
+            name: "MyProperty",
+            table: "Users");
+    }
 
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.AddColumn<int>(
-                name: "MyProperty",
-                table: "Users",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-        }
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.AddColumn<int>(
+            name: "MyProperty",
+            table: "Users",
+            type: "int",
+            nullable: false,
+            defaultValue: 0);
     }
 }

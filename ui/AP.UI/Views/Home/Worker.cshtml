@@ -9,8 +9,8 @@
         <div class="card">
 
             <div class="card-body">
-                <div class="form-group">
-                    <button type="button" class="btn btn-sm btn-light-primary main"  asp-controller="Home" asp-action="CreateWorker">Yeni Ekle</button>
+                <div class="form-group"> 
+                    <a asp-action="CreateWorker" class="btn btn-success">Yeni Çalışan</a>
                 </div>
                 <div class="dt-responsive table-responsive">
                     <table id="dom-table" class="table table-striped table-bordered nowrap">
@@ -32,9 +32,9 @@
                                     <td>@worker.Surname</td>
                                     <td>@worker.Department.Description</td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-light-primary main"  >Düzenle</button>
-                                        <button type="button" class="btn btn-sm btn-light-danger main"  >Kaldır</button>
-
+                                        <a asp-action="UpdateWorker" class="btn btn-primary">Düzenle</a>
+                                        <a asp-action="DeleteWorker" class="btn btn-danger">Kaldır</a>
+                                         
                                     </td>
                                 </tr>
                             }
