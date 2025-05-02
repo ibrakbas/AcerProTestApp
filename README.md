@@ -1,7 +1,8 @@
 # Acer Pro Test Proje Dokümantasyonu
 
 ## Genel Bakýþ
-Bu depo, bir Razor Pages projesi (`AP.UI`) ve bir API projesi (`AP.API`) içermektedir. Aþaðýda Git iþ akýþý, kurulum talimatlarý ve katký yönergeleri hakkýnda detaylar bulabilirsiniz.
+Bu depo, bir Razor Pages projesi (`AP.UI`) ve bir API projesi (`AP.API`) içermektedir. 
+Aþaðýda Git iþ akýþý, kurulum talimatlarý ve proje iþleyiþi hakkýnda detaylar bulabilirsiniz.
 
 ---
 
@@ -9,11 +10,11 @@ Bu depo, bir Razor Pages projesi (`AP.UI`) ve bir API projesi (`AP.API`) içermek
 
 ### Katmanlar
 - **Veritabaný**: `AP.Generic` - Veritabaný baðlantý ayarlarý ve yapýlandýrmalarý.
-- **API**: `AP.API` - API baþlangýç ve yönetim katmaný.
-- **UI**: `AP.UI` - Proje User Interface.
-- **AP.Data **: `AP.Data` - Veritabaný ile ilgili tüm kodlar.
-- **AP.Presentation**: `AP.Presentation` - API Controller .
-- **AP.Utils**: `AP.Utils` - API Helper sýnýflarý.
+- **API**: `AP.API` - API baþlangýç ve yönetim katmaný. Standalone olarak çalýþmaktadýr.
+- **UI**: `AP.UI` - Uygulamanýn User Interface'i.
+- **AP.Data **: `AP.Data` - Veritabaný ile ilgili tüm kodlar bu katmanda koþmaktadýr.
+- **AP.Presentation**: `AP.Presentation` - API Controller katmaný .
+- **AP.Utils**: `AP.Utils` - API Helper sýnýflarý- JWT yönetimi .
 - 
  
 ---
